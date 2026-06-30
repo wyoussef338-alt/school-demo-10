@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Changa:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Changa", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background-color: #060a13;
+  color: #f1f5f9;
+  font-family: "Cairo", sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Beautiful dynamic background canvas */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -10;
+  background-color: #050810;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 30% 50%, rgba(244, 63, 94, 0.01) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+/* Smooth ambient floating glow layers */
+.ambient-glow-1 {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  left: -100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, rgba(0,0,0,0) 70%);
+  z-index: -5;
+  filter: blur(60px);
+  animation: floatAmbient 25s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.ambient-glow-2 {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  bottom: -100px;
+  right: -100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, rgba(0,0,0,0) 75%);
+  z-index: -5;
+  filter: blur(60px);
+  animation: floatAmbientInverse 30s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes floatAmbient {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  100% {
+    transform: translate(30px, 60px) scale(1.1);
+  }
+}
+
+@keyframes floatAmbientInverse {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  100% {
+    transform: translate(-40px, -50px) scale(1.05);
+  }
+}
+
+/* Premium advanced glassmorphism utilities */
+.glass-panel {
+  background: rgba(10, 15, 30, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-card {
+  background: rgba(13, 20, 38, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(15, 25, 48, 0.65);
+  border-color: rgba(6, 182, 212, 0.18);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(6, 182, 212, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.04);
+}
+
+.glass-input {
+  background: rgba(10, 15, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #fff;
+  transition: all 0.25s ease;
+}
+
+.glass-input:focus {
+  background: rgba(10, 15, 30, 0.85);
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+  outline: none;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #04070d;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 1px solid #04070d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+/* Neon indicators */
+.text-neon-cyan {
+  text-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+}
+.text-neon-amber {
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
+.glow-cyan-lg {
+  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.35), 0 0 10px -6px rgba(6, 182, 212, 0.2);
+}
+.glow-cyan-sm {
+  box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.2);
+}
+
+/* Animated audio visualizer bars */
+@keyframes bar1 {
+  0%, 100% { height: 4px; }
+  50% { height: 14px; }
+}
+@keyframes bar2 {
+  0%, 100% { height: 6px; }
+  50% { height: 18px; }
+}
+@keyframes bar3 {
+  0%, 100% { height: 8px; }
+  50% { height: 12px; }
+}
+@keyframes bar4 {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+.animate-pulse-bar1 {
+  animation: bar1 0.8s ease-in-out infinite;
+}
+.animate-pulse-bar2 {
+  animation: bar2 0.7s ease-in-out infinite;
+}
+.animate-pulse-bar3 {
+  animation: bar3 0.9s ease-in-out infinite;
+}
+.animate-pulse-bar4 {
+  animation: bar4 0.75s ease-in-out infinite;
+}
+

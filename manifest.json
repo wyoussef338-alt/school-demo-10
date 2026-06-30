@@ -1,0 +1,21 @@
+{
+  "short_name": "الصالحين",
+  "name": "مدرسة الصالحين الرسمية للغات",
+  "icons": [
+    {
+      "src": "school-logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "school-logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#06080c",
+  "theme_color": "#d4af37",
+  "display": "standalone",
+  "orientation": "portrait"
+}

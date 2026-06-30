@@ -1,0 +1,200 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Profile information of student, teacher, or parent",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "teacher", "admin", "parent"] },
+        "gradeId": { "type": "string" },
+        "classId": { "type": "string" },
+        "points": { "type": "integer" },
+        "streak": { "type": "integer" },
+        "achievements": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "nationalId": { "type": "string" },
+        "parentEmail": { "type": "string" },
+        "childrenNationalIds": { "type": "array" },
+        "subject": { "type": "string" },
+        "teacherCode": { "type": "string" }
+      },
+      "required": ["uid", "email", "name", "role", "points", "streak"]
+    },
+    "ClassScore": {
+      "title": "Class Score",
+      "description": "Represents school class scores",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "points": { "type": "integer" }
+      },
+      "required": ["id", "name", "points"]
+    },
+    "LeagueTeam": {
+      "title": "League Team",
+      "description": "A school league team registered by a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerEmail": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "teamName": { "type": "string" },
+        "division": { "type": "string", "enum": ["prep", "secondary"] },
+        "gradeId": { "type": "string" },
+        "group": { "type": "string", "enum": ["A", "B"] },
+        "mainPlayers": { "type": "array" },
+        "subPlayers": { "type": "array" },
+        "createdAt": { "type": "integer" }
+      },
+      "required": ["id", "ownerEmail", "teamName", "division", "mainPlayers"]
+    },
+    "LeagueMatch": {
+      "title": "League Match",
+      "description": "A recorded sports match with scores and stats",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "division": { "type": "string", "enum": ["prep", "secondary", "super"] },
+        "stage": { "type": "string", "enum": ["groups", "semi", "final", "super-final"] },
+        "groupName": { "type": "string" },
+        "homeTeamId": { "type": "string" },
+        "awayTeamId": { "type": "string" },
+        "homeGoals": { "type": "integer" },
+        "awayGoals": { "type": "integer" },
+        "mvpName": { "type": "string" },
+        "mvpTeamId": { "type": "string" },
+        "penaltyWinnerTeamId": { "type": "string" },
+        "notes": { "type": "string" },
+        "scorers": { "type": "array" },
+        "playedAt": { "type": "integer" }
+      },
+      "required": ["id", "division", "stage", "homeTeamId", "awayTeamId", "homeGoals", "awayGoals", "playedAt"]
+    },
+    "LeagueVideo": {
+      "title": "League Video",
+      "description": "Videos and clips of matches or goals",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "url": { "type": "string" },
+        "kind": { "type": "string", "enum": ["هدف", "مهارة", "لقطة"] },
+        "addedAt": { "type": "integer" },
+        "addedBy": { "type": "string" }
+      },
+      "required": ["id", "title", "url", "kind", "addedAt"]
+    },
+    "LeagueVote": {
+      "title": "League Vote",
+      "description": "Votes casted for mvp players or best teams",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "target": { "type": "string" },
+        "at": { "type": "integer" }
+      },
+      "required": ["email", "target", "at"]
+    },
+    "AttendanceRecord": {
+      "title": "Attendance Record",
+      "description": "Represents student daily attendance status",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "studentUid": { "type": "string" },
+        "studentName": { "type": "string" },
+        "classId": { "type": "string" },
+        "date": { "type": "string" },
+        "status": { "type": "string", "enum": ["present", "absent", "late"] },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "studentUid", "studentName", "classId", "date", "status"]
+    },
+    "CommunicationNote": {
+      "title": "Communication Note",
+      "description": "A direct academic or behavioral note thread between teacher and parent",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentUid": { "type": "string" },
+        "studentName": { "type": "string" },
+        "parentEmail": { "type": "string" },
+        "teacherUid": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "subject": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "category": { "type": "string", "enum": ["academic", "behavior", "praise"] },
+        "createdAt": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "replies": { "type": "array" }
+      },
+      "required": ["id", "studentUid", "studentName", "parentEmail", "teacherUid", "teacherName", "title", "content", "category", "createdAt"]
+    },
+    "ComplaintItem": {
+      "title": "Complaint / Suggestion Item",
+      "description": "An administrative complaint or suggestion submitted by a parent",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "parentName": { "type": "string" },
+        "parentEmail": { "type": "string" },
+        "category": { "type": "string", "enum": ["complaint", "suggestion", "request"] },
+        "title": { "type": "string" },
+        "details": { "type": "string" },
+        "urgency": { "type": "string", "enum": ["normal", "medium", "urgent"] },
+        "date": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "reviewing", "resolved"] },
+        "adminReply": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "parentName", "parentEmail", "category", "title", "details", "urgency", "date", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles catalog"
+    },
+    "/classScores/{classId}": {
+      "schema": "ClassScore",
+      "description": "Scores for school classrooms"
+    },
+    "/leagueTeams/{teamId}": {
+      "schema": "LeagueTeam",
+      "description": "Registered tournament teams"
+    },
+    "/leagueMatches/{matchId}": {
+      "schema": "LeagueMatch",
+      "description": "Match result archives"
+    },
+    "/leagueVideos/{videoId}": {
+      "schema": "LeagueVideo",
+      "description": "Clips database"
+    },
+    "/leagueVotes_player/{voteId}": {
+      "schema": "LeagueVote",
+      "description": "Player mvp votes"
+    },
+    "/leagueVotes_team/{voteId}": {
+      "schema": "LeagueVote",
+      "description": "Team reputation votes"
+    },
+    "/attendance/{recordId}": {
+      "schema": "AttendanceRecord",
+      "description": "Daily attendance registries"
+    },
+    "/communications/{noteId}": {
+      "schema": "CommunicationNote",
+      "description": "Direct communication thread comments and pointers"
+    },
+    "/complaints/{complaintId}": {
+      "schema": "ComplaintItem",
+      "description": "Official complaints and suggestions with admin feedback"
+    }
+  }
+}
